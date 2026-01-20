@@ -34,7 +34,7 @@ public class User {
 
   private String name;
 
-  @Column(name = "created_at")
+  @Column(name = "created_at", updatable = false)
   private LocalDateTime createdAt;
 
   // Un User puede ser dueño de MUCHOS Boards
