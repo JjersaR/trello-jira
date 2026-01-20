@@ -20,10 +20,6 @@ public class UserService {
   private final ModelMapper mapper;
 
   // GET
-  public List<UserResponse> getAll() {
-    return repository.findAll().stream().map(mapper::toUserResponse).toList();
-  }
-
   public Optional<UserResponse> getByUsername(String username) {
     return repository.findByUsername(username).map(mapper::toUserResponse);
   }

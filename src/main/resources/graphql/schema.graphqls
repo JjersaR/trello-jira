@@ -3,12 +3,18 @@ scalar Date
 scalar Time
 
 type Query {
-  hello: String
+  # USER
+  findByUsername(username: String!): UserResponse
+  findByName(name: String!): UserResponse
+  findByEmail(email: String!): UserResponse
+  findByBoard(boardId: Int!): [UserResponse]
 }
 
 type Mutation {
   # USER
   createUser(user: UserRequest!): String
+  updateUser(user: UserRequest!, id: Int): String
+  deleteUser(id: Int): String
 }
 
 """
