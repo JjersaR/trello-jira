@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import com.trellojira.dto.mapper.ModelMapper;
 import com.trellojira.dto.request.UserRequest;
 import com.trellojira.dto.response.UserResponse;
-import com.trellojira.user.entity.User;
 import com.trellojira.user.repository.IUserRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -55,13 +54,21 @@ public class UserService {
   }
 
   // UPDATE
-  public void save(UserRequest userRequest, Long id) {
-    if (repository.existsById(id)) {
-      var user = new User();
+  public void update(UserRequest userRequest, Long id) {
+    var userOp = repository.findById(id);
+    if (userOp.isPresent()) {
+      var user = userOp.get();
       user.setId(id);
-      user.setUsername(userRequest.getUsername());
-      user.setName(userRequest.getName());
-      user.setEmail(userRequest.getEmail());
+
+      if (userRequest.getUsername() != null) {
+        user.setUsername(userRequest.getUsername());
+      }
+      if (userRequest.getName() != null) {
+        user.setName(userRequest.getName());
+      }
+      if (userRequest.getEmail() != null) {
+        user.setEmail(userRequest.getEmail());
+      }
 
       repository.save(user);
     }

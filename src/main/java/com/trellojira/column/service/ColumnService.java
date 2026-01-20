@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.trellojira.board.repository.IBoardRepository;
-import com.trellojira.column.entity.Columns;
 import com.trellojira.column.repository.IColumnRepository;
 import com.trellojira.dto.mapper.ModelMapper;
 import com.trellojira.dto.request.ColumnRequest;
@@ -38,15 +37,23 @@ public class ColumnService {
   }
 
   public void update(ColumnRequest request, Long id) {
-    if (repository.existsById(id)) {
+    var columnOp = repository.findById(id);
 
-      var board = boardRepository.findById(request.getBoardId()).get();
+    if (columnOp.isPresent()) {
+      var column = columnOp.get();
 
-      var column = new Columns();
       column.setId(id);
-      column.setName(request.getName());
-      column.setPosition(request.getPosition());
-      column.setBoard(board);
+
+      if (request.getName() != null) {
+        column.setName(request.getName());
+      }
+      if (request.getPosition() != null) {
+        column.setPosition(request.getPosition());
+      }
+      if (!column.getBoard().getId().equals(request.getBoardId())) {
+        var board = boardRepository.findById(request.getBoardId()).get();
+        column.setBoard(board);
+      }
 
       repository.save(column);
     }

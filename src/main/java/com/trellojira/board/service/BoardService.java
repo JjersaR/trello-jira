@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.trellojira.board.entity.Board;
 import com.trellojira.board.repository.IBoardRepository;
 import com.trellojira.dto.mapper.ModelMapper;
 import com.trellojira.dto.request.BoardRequest;
@@ -40,14 +39,22 @@ public class BoardService {
   }
 
   public void update(BoardRequest request, Long id) {
-    if (repository.existsById(id)) {
-      var board = new Board();
+    var boardOp = repository.findById(id);
+    if (boardOp.isPresent()) {
+      var board = boardOp.get();
 
       var user = userRepository.findById(request.getOwnerId()).get();
       board.setId(id);
-      board.setName(request.getName());
-      board.setDescription(request.getDescription());
-      board.setOwner(user);
+
+      if (request.getName() != null) {
+        board.setName(request.getName());
+      }
+      if (request.getDescription() != null) {
+        board.setDescription(request.getDescription());
+      }
+      if (!board.getOwner().getId().equals(request.getOwnerId())) {
+        board.setOwner(user);
+      }
 
       repository.save(board);
     }

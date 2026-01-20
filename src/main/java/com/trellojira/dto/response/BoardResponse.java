@@ -13,6 +13,8 @@ import lombok.NoArgsConstructor;
 public class BoardResponse {
   private Long id;
 
+  private String name;
+
   private String description;
 
   private UserResponse owner;

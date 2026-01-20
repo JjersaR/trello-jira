@@ -1,0 +1,133 @@
+scalar DateTime
+scalar Date
+scalar Time
+
+type Query {
+  hello: String
+}
+
+type Mutation {
+  # USER
+  createUser(user: UserRequest!): String
+}
+
+"""
+Para petición de Board
+"""
+input BoardRequest {
+  name: String!
+  description: String
+  ownerId: ID!
+}
+
+"""
+Para petición de Card
+"""
+input CardRequest {
+  title: String!
+  description: String
+  position: Int
+  columnId: ID!
+  assigneeId: ID
+  createdById: ID!
+  dueDate: DateTime
+  priority: String
+}
+
+"""
+Para petición de Column
+"""
+input ColumnRequest {
+  name: String!
+  position: Int
+  boardId: ID!
+}
+
+"""
+Para petición de Comment
+"""
+input CommentRequest {
+  content: String!
+  cardId: ID!
+  authorId: ID!
+}
+
+"""
+Para petición de User
+"""
+input UserRequest {
+  username: String!
+  email: String!
+  name: String
+}
+
+"""
+Para respuesta de User
+"""
+type UserResponse {
+  id: ID
+  username: String
+  email: String
+  name: String
+  createdAt: String
+  boardCount: Int
+  memberBoardsCount: Int
+}
+
+"""
+Para respuesta de Comment
+"""
+type CommentResponse {
+  id: ID
+  content: String
+  cardId: ID
+  authorUsername: String
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+"""
+Para respuesta de Card
+"""
+type CardResponse {
+  id: ID
+  title: String
+  description: String
+  position: Int
+  column: ColumnResponse
+  assignedTo: UserResponse
+  createdBy: UserResponse
+  dueDate: DateTime
+  createdAt: DateTime
+  updatedAt: DateTime
+  priority: String
+  commentsCount: Int
+  comments: [CommentResponse]
+}
+
+"""
+Para respuesta de Column
+"""
+type ColumnResponse {
+  id: ID
+  name: String
+  position: Int
+  boardId: ID
+  cardsCount: Int
+  cards: [CardResponse]
+}
+
+"""
+Para respuesta de Board
+"""
+type BoardResponse {
+  id: ID
+  name: String!
+  description: String
+  owner: UserResponse
+  createdAt: DateTime
+  updatedAt: DateTime
+  columnsCount: Int
+  membersCount: Int
+  columns: [ColumnResponse]
+}
