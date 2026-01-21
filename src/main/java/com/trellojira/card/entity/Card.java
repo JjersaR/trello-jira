@@ -1,6 +1,6 @@
 package com.trellojira.card.entity;
 
-import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 import java.util.List;
 
 import com.trellojira.column.entity.Columns;
@@ -59,25 +59,25 @@ public class Card {
   private List<Comment> comments;
 
   @Column(name = "due_date")
-  private LocalDateTime dueDate;
+  private OffsetDateTime dueDate;
 
   @Column(name = "created_at")
-  private LocalDateTime createdAt;
+  private OffsetDateTime createdAt;
 
   @Column(name = "updated_at")
-  private LocalDateTime updatedAt;
+  private OffsetDateTime updatedAt;
 
   @Enumerated(EnumType.STRING)
   private EPriority priority;
 
   @PrePersist
   protected void onCreate() {
-    createdAt = LocalDateTime.now();
-    updatedAt = LocalDateTime.now();
+    createdAt = OffsetDateTime.now();
+    updatedAt = OffsetDateTime.now();
   }
 
   @PreUpdate
   protected void onUpdate() {
-    updatedAt = LocalDateTime.now();
+    updatedAt = OffsetDateTime.now();
   }
 }

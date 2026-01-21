@@ -1,6 +1,6 @@
 package com.trellojira.dto.response;
 
-import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -18,7 +18,7 @@ public class CommentResponse {
 
   private String authorUsername;
 
-  private LocalDateTime createdAt;
+  private OffsetDateTime createdAt;
 
-  private LocalDateTime updatedAt;
+  private OffsetDateTime updatedAt;
 }

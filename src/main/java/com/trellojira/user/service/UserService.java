@@ -44,6 +44,10 @@ public class UserService {
     return repository.findByMemberBoardsId(boardId).stream().map(mapper::toUserResponse).toList();
   }
 
+  public Optional<UserResponse> getBoardOwned(Long boardId, Long userId) {
+    return repository.findBoardOwnedByUser(boardId, userId).map(mapper::toUserResponse);
+  }
+
   // SAVE
   public void save(UserRequest user) {
     repository.save(mapper.toUser(user));

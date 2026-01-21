@@ -7,9 +7,8 @@ import com.trellojira.dto.mapper.ModelMapper;
 
 import lombok.RequiredArgsConstructor;
 
-@Controller
 @RequiredArgsConstructor
-public class MutationController {
+public class MutationBoardController {
 
   private final BoardService service;
   private final ModelMapper mapper;

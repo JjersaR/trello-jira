@@ -7,7 +7,6 @@ import com.trellojira.dto.mapper.ModelMapper;
 
 import lombok.RequiredArgsConstructor;
 
-@Controller
 @RequiredArgsConstructor
 public class QueryController {
 

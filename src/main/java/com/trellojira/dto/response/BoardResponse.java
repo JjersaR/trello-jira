@@ -1,6 +1,6 @@
 package com.trellojira.dto.response;
 
-import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 import java.util.List;
 
 import lombok.AllArgsConstructor;
@@ -17,11 +17,11 @@ public class BoardResponse {
 
   private String description;
 
-  private UserResponse owner;
+  private Long ownerId;
 
-  private LocalDateTime createdAt;
+  private OffsetDateTime createdAt;
 
-  private LocalDateTime updatedAt;
+  private OffsetDateTime updatedAt;
 
   private Integer columnsCount;
 

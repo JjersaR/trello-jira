@@ -1,7 +1,5 @@
 package com.trellojira.dto.response;
 
-import java.util.List;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,5 +18,4 @@ public class ColumnResponse {
 
   private Integer cardsCount;
 
-  private List<CardResponse> cards;
 }

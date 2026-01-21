@@ -1,6 +1,6 @@
 package com.trellojira.comment.entity;
 
-import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 
 import com.trellojira.card.entity.Card;
 import com.trellojira.user.entity.User;
@@ -39,19 +39,19 @@ public class Comment {
   private User author;
 
   @Column(name = "created_at")
-  private LocalDateTime createdAt;
+  private OffsetDateTime createdAt;
 
   @Column(name = "updated_at")
-  private LocalDateTime updatedAt;
+  private OffsetDateTime updatedAt;
 
   @PrePersist
   protected void onCreate() {
-    createdAt = LocalDateTime.now();
-    updatedAt = LocalDateTime.now();
+    createdAt = OffsetDateTime.now();
+    updatedAt = OffsetDateTime.now();
   }
 
   @PreUpdate
   protected void onUpdate() {
-    updatedAt = LocalDateTime.now();
+    updatedAt = OffsetDateTime.now();
   }
 }

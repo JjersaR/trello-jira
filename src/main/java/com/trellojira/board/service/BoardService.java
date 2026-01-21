@@ -59,4 +59,10 @@ public class BoardService {
       repository.save(board);
     }
   }
+
+  public void delete(Long id) {
+    if (repository.existsById(id)) {
+      repository.deleteById(id);
+    }
+  }
 }

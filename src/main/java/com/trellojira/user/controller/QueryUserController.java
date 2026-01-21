@@ -13,7 +13,7 @@ import lombok.RequiredArgsConstructor;
 
 @Controller
 @RequiredArgsConstructor
-public class QueryController {
+public class QueryUserController {
 
   private final UserService service;
 

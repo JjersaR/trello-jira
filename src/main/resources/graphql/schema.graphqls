@@ -1,6 +1,4 @@
 scalar DateTime
-scalar Date
-scalar Time
 
 type Query {
   # USER
@@ -8,13 +6,16 @@ type Query {
   findByName(name: String!): UserResponse
   findByEmail(email: String!): UserResponse
   findByBoard(boardId: Int!): [UserResponse]
+
+  # BOARD
+  findByOwner(id: Int!): [BoardResponse]
 }
 
 type Mutation {
   # USER
   createUser(user: UserRequest!): String
   updateUser(user: UserRequest!, id: Int): String
-  deleteUser(id: Int): String
+  deleteUser(id: Int!): String
 }
 
 """
@@ -120,7 +121,6 @@ type ColumnResponse {
   position: Int
   boardId: ID
   cardsCount: Int
-  cards: [CardResponse]
 }
 
 """
@@ -130,10 +130,9 @@ type BoardResponse {
   id: ID
   name: String!
   description: String
-  owner: UserResponse
+  ownerId: Int
   createdAt: DateTime
   updatedAt: DateTime
   columnsCount: Int
   membersCount: Int
-  columns: [ColumnResponse]
 }

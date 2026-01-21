@@ -1,6 +1,6 @@
 package com.trellojira.dto.response;
 
-import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 import java.util.List;
 
 import lombok.AllArgsConstructor;
@@ -18,9 +18,9 @@ public class CardResponse {
   private ColumnResponse column;
   private UserResponse assignedTo;
   private UserResponse createdBy;
-  private LocalDateTime dueDate;
-  private LocalDateTime createdAt;
-  private LocalDateTime updatedAt;
+  private OffsetDateTime dueDate;
+  private OffsetDateTime createdAt;
+  private OffsetDateTime updatedAt;
   private String priority;
   private Integer commentsCount;
   private List<CommentResponse> comments;

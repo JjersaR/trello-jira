@@ -1,6 +1,6 @@
 package com.trellojira.dto.request;
 
-import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -29,7 +29,7 @@ public class CardRequest {
   @NotNull(message = "Created by ID is required")
   private Long createdById;
 
-  private LocalDateTime dueDate;
+  private OffsetDateTime dueDate;
 
   private String priority;
 }

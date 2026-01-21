@@ -11,7 +11,7 @@ import lombok.RequiredArgsConstructor;
 
 @Controller
 @RequiredArgsConstructor
-public class MutationController {
+public class MutationUserController {
 
   private final UserService service;
 

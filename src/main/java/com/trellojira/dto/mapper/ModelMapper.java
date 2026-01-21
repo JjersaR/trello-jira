@@ -74,13 +74,13 @@ public class ModelMapper {
 
     var response = new BoardResponse();
     response.setId(board.getId());
+    response.setName(board.getName());
     response.setDescription(board.getDescription());
-    response.setOwner(toUserResponse(board.getOwner()));
+    response.setOwnerId(board.getOwner() != null ? board.getOwner().getId() : null);
     response.setCreatedAt(board.getCreatedAt());
     response.setUpdatedAt(board.getUpdatedAt());
     response.setColumnsCount(board.getColumns().size());
     response.setMembersCount(board.getMembers().size());
-    response.setColumns(board.getColumns().stream().map(this::toColumnResponse).toList());
 
     return response;
   }

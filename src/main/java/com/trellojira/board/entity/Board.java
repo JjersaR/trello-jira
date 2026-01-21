@@ -1,6 +1,6 @@
 package com.trellojira.board.entity;
 
-import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 import java.util.List;
 
 import com.trellojira.column.entity.Columns;
@@ -51,19 +51,19 @@ public class Board {
   private List<User> members;
 
   @Column(name = "created_at")
-  private LocalDateTime createdAt;
+  private OffsetDateTime createdAt;
 
   @Column(name = "updated_at")
-  private LocalDateTime updatedAt;
+  private OffsetDateTime updatedAt;
 
   @PrePersist
   protected void onCreate() {
-    createdAt = LocalDateTime.now();
-    updatedAt = LocalDateTime.now();
+    createdAt = OffsetDateTime.now();
+    updatedAt = OffsetDateTime.now();
   }
 
   @PreUpdate
   protected void onUpdate() {
-    updatedAt = LocalDateTime.now();
+    updatedAt = OffsetDateTime.now();
   }
 }

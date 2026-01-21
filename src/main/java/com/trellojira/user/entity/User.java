@@ -1,6 +1,6 @@
 package com.trellojira.user.entity;
 
-import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 import java.util.List;
 
 import com.trellojira.board.entity.Board;
@@ -18,8 +18,8 @@ import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 import lombok.Data;
 
-@Entity
 @Data
+@Entity
 @Table(name = "users")
 public class User {
   @Id
@@ -35,7 +35,7 @@ public class User {
   private String name;
 
   @Column(name = "created_at", updatable = false)
-  private LocalDateTime createdAt;
+  private OffsetDateTime createdAt;
 
   // Un User puede ser dueño de MUCHOS Boards
   @OneToMany(mappedBy = "owner")
@@ -59,6 +59,6 @@ public class User {
 
   @PrePersist
   protected void onCreate() {
-    createdAt = LocalDateTime.now();
+    createdAt = OffsetDateTime.now();
   }
 }
