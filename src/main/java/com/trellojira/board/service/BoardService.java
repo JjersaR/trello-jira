@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 import com.trellojira.board.repository.IBoardRepository;
 import com.trellojira.dto.mapper.ModelMapper;
 import com.trellojira.dto.request.BoardRequest;
-import com.trellojira.dto.request.UserRequest;
 import com.trellojira.dto.response.BoardResponse;
 import com.trellojira.user.repository.IUserRepository;
 
@@ -25,14 +24,6 @@ public class BoardService {
     return repository.findByOwnerId(id).stream().map(mapper::toBoardResponse).toList();
   }
 
-  public List<BoardResponse> getByMembers(UserRequest user) {
-    return repository.findByMembersContaining(mapper.toUser(user)).stream().map(mapper::toBoardResponse).toList();
-  }
-
-  public List<BoardResponse> getByOwnerUsername(String username) {
-    return repository.findByOwnerUsername(username).stream().map(mapper::toBoardResponse).toList();
-  }
-
   public void save(BoardRequest board) {
     var user = userRepository.findById(board.getOwnerId()).get();
     repository.save(mapper.toBoard(board, user));
@@ -40,11 +31,11 @@ public class BoardService {
 
   public void update(BoardRequest request, Long id) {
     var boardOp = repository.findById(id);
-    if (boardOp.isPresent()) {
-      var board = boardOp.get();
+    var userOp = userRepository.findById(request.getOwnerId());
 
-      var user = userRepository.findById(request.getOwnerId()).get();
-      board.setId(id);
+    if (boardOp.isPresent() && userOp.isPresent()) {
+      var board = boardOp.get();
+      var user = userOp.get();
 
       if (request.getName() != null) {
         board.setName(request.getName());

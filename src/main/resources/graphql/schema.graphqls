@@ -16,6 +16,11 @@ type Mutation {
   createUser(user: UserRequest!): String
   updateUser(user: UserRequest!, id: Int): String
   deleteUser(id: Int!): String
+
+  # BOARD
+  createBoard(board: BoardRequest!) : String
+  updateBoard(board: BoardRequest!, id: Int!) : String
+  deleteBoard(id: Int!) : String
 }
 
 """
