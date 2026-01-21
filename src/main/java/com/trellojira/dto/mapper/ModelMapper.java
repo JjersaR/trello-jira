@@ -156,7 +156,6 @@ public class ModelMapper {
     response.setPosition(column.getPosition());
     response.setBoardId(column.getBoard().getId());
     response.setCardsCount(column.getCards().size());
-    response.setCards(column.getCards().stream().map(this::toCardResponse).toList());
 
     return response;
   }

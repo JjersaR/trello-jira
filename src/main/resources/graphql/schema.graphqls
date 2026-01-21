@@ -121,6 +121,7 @@ type ColumnResponse {
   position: Int
   boardId: ID
   cardsCount: Int
+  cards: [CardResponse]
 }
 
 """
@@ -131,8 +132,11 @@ type BoardResponse {
   name: String!
   description: String
   ownerId: Int
+  owner: UserResponse
   createdAt: DateTime
   updatedAt: DateTime
   columnsCount: Int
   membersCount: Int
+  columns: [ColumnResponse]
+  members: [UserResponse]
 }

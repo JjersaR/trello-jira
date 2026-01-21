@@ -27,5 +27,10 @@ public class BoardResponse {
 
   private Integer membersCount;
 
+  private UserResponse owner;
+
   private List<ColumnResponse> columns;
+
+  private List<UserResponse> members;
+
 }
