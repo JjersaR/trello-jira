@@ -14,6 +14,10 @@ type Query {
   findByColumn(id: Int!): [CardResponse]
   findByAssignedTo(id: Int!): [CardResponse]
   findByColumnOrder(id: Int!): [CardResponse]
+
+  # COLUMN
+  findByBoardId(id: Int!): [ColumnResponse]
+  findByBoardIdOrder(id: Int!): [ColumnResponse]
 }
 
 type Mutation {
@@ -30,6 +34,11 @@ type Mutation {
   # CARD
   createCard(card: CardRequest!) : String
   deleteCard(id: Int!) : String
+
+  # COLUMN
+  createColumn(column: ColumnRequest!) : String
+  updateColumn(column: ColumnRequest!, id: Int!) : String
+  deleteColumn(id: Int!) : String
 }
 
 """

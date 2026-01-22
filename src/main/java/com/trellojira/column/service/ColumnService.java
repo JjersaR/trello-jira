@@ -42,8 +42,6 @@ public class ColumnService {
     if (columnOp.isPresent()) {
       var column = columnOp.get();
 
-      column.setId(id);
-
       if (request.getName() != null) {
         column.setName(request.getName());
       }
