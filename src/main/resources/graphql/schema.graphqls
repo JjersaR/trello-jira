@@ -18,6 +18,9 @@ type Query {
   # COLUMN
   findByBoardId(id: Int!): [ColumnResponse]
   findByBoardIdOrder(id: Int!): [ColumnResponse]
+
+  # COMMENT
+  findByCard(id: Int!): [CommentResponse]
 }
 
 type Mutation {
@@ -39,6 +42,10 @@ type Mutation {
   createColumn(column: ColumnRequest!) : String
   updateColumn(column: ColumnRequest!, id: Int!) : String
   deleteColumn(id: Int!) : String
+
+  # COMMENT
+  saveComment(comment: CommentRequest!) : String
+  deleteComment(id: Int!) : String
 }
 
 """
