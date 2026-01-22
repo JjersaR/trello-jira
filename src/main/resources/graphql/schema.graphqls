@@ -9,6 +9,11 @@ type Query {
 
   # BOARD
   findByOwner(id: Int!): [BoardResponse]
+
+  # CARD
+  findByColumn(id: Int!): [CardResponse]
+  findByAssignedTo(id: Int!): [CardResponse]
+  findByColumnOrder(id: Int!): [CardResponse]
 }
 
 type Mutation {
@@ -21,6 +26,10 @@ type Mutation {
   createBoard(board: BoardRequest!) : String
   updateBoard(board: BoardRequest!, id: Int!) : String
   deleteBoard(id: Int!) : String
+
+  # CARD
+  createCard(card: CardRequest!) : String
+  deleteCard(id: Int!) : String
 }
 
 """
@@ -40,7 +49,7 @@ input CardRequest {
   description: String
   position: Int
   columnId: ID!
-  assigneeId: ID
+  assignedToId: ID
   createdById: ID!
   dueDate: DateTime
   priority: String
